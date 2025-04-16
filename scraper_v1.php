@@ -25,3 +25,6 @@ if (empty($newPreviews)) {
 
 $name = 'docs/v1/' . $date->format('Ymd') . '.json';
 file_put_contents($name, json_encode(['previews' => $newPreviews]));
+
+$name = 'docs/v1/today.json';
+file_put_contents($name, json_encode(['previews' => $newPreviews]));
