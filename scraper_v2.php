@@ -14,7 +14,6 @@ $newPreviews = [];
 foreach (array_values($previews) as $data) {
     foreach (array_values($data) as $preview) {
         $preview['boats'] = array_values($preview['boats']);
-        $preview['courses'] = array_values($preview['courses']);
         $newPreviews[] = $preview;
     }
 }
