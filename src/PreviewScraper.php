@@ -68,7 +68,7 @@ final class PreviewScraper
 
         foreach (array_values($previews) as $data) {
             foreach (array_values($data) as $preview) {
-                $program['boats'] = isset($preview['boats'])
+                $previews['boats'] = isset($preview['boats'])
                     ? array_values((array) $preview['boats'])
                     : [];
                 $newPreviews[] = $preview;
