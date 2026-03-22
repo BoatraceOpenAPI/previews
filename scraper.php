@@ -5,7 +5,8 @@ declare(strict_types=1);
 require __DIR__ . '/vendor/autoload.php';
 
 use BOA\Previews\PreviewScraper;
-use BOA\Previews\PreviewStorage;
+use BOA\Previews\PreviewSaver;
+use BOA\Previews\ScraperAdapter;
 use BVP\Scraper\Scraper;
 use Carbon\CarbonImmutable as Carbon;
 
@@ -17,9 +18,9 @@ $date = Carbon::today('Asia/Tokyo');
 
 // v2 or v3 の場合のみ PreviewScraper を利用して直前情報データを取得
 if ($version === 'v2' || $version === 'v3') {
-    $scraper = new PreviewScraper(
-        Scraper::getInstance()
-    );
+    $scraperInstance = Scraper::getInstance();
+    $scraperAdapter = new ScraperAdapter($scraperInstance);
+    $scraper = new PreviewScraper($scraperAdapter);
 
     // 指定日付の直前情報データをスクレイピング
     $previews = $scraper->scrape($date);
@@ -33,6 +34,6 @@ if (empty($previews ?? [])) {
 // 直前情報データを JSON ファイルとして保存
 // 日付付きの JSON ファイルとして保存（例: docs/v2/2025/20250714.json）
 // 最新データとして today.json にも保存
-$storage = new PreviewStorage();
+$storage = new PreviewSaver();
 $storage->save($previews, "docs/{$version}/" . $date->format('Y') . '/' . $date->format('Ymd') . '.json');
 $storage->save($previews, "docs/{$version}/today.json");
