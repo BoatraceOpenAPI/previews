@@ -15,8 +15,8 @@ $version = $argv[1] ?? 'v2';
 // 本日の日付を東京時間で取得
 $date = Carbon::today('Asia/Tokyo');
 
-// v2 の場合のみ PreviewScraper を利用して直前情報データを取得
-if ($version === 'v2') {
+// v2 or v3 の場合のみ PreviewScraper を利用して直前情報データを取得
+if ($version === 'v2' || $version === 'v3') {
     $scraper = new PreviewScraper(
         Scraper::getInstance()
     );
