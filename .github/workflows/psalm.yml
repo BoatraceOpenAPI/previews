@@ -3,7 +3,7 @@ name: psalm
 on:
   push:
     branches:
-      - '*.x'
+      - 'gh-pages'
   pull_request:
   schedule:
     - cron: '0 0 * * *'
@@ -26,6 +26,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, xml
+          tools: composer:v2
+          coverage: none
 
       - name: Checkout Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
@@ -34,4 +36,4 @@ jobs:
         run: composer install --prefer-dist --no-interaction --no-progress --dev
 
       - name: Run Psalm
-        run: vendor/bin/psalm --show-info=true
+        run: vendor/bin/psalm --config=psalm.xml.dist --show-info=true
