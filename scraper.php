@@ -32,7 +32,7 @@ if (empty($previews ?? [])) {
 }
 
 // 直前情報データを JSON ファイルとして保存
-// 日付付きの JSON ファイルとして保存（例: docs/v3/2025/20250714.json）
+// 日付付きの JSON ファイルとして保存（例: docs/v3/2026/20260322.json）
 // 最新データとして today.json にも保存
 $storage = new PreviewSaver();
 $storage->save($previews, "docs/{$version}/" . $date->format('Y') . '/' . $date->format('Ymd') . '.json');
