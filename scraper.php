@@ -10,8 +10,8 @@ use BOA\Previews\ScraperAdapter;
 use BVP\Scraper\Scraper;
 use Carbon\CarbonImmutable as Carbon;
 
-// コマンドライン引数からバージョンを取得（デフォルトは v2）
-$version = $argv[1] ?? 'v2';
+// コマンドライン引数からバージョンを取得（デフォルトは v3）
+$version = $argv[1] ?? 'v3';
 
 // 本日の日付を東京時間で取得
 $date = Carbon::today('Asia/Tokyo');
@@ -32,7 +32,7 @@ if (empty($previews ?? [])) {
 }
 
 // 直前情報データを JSON ファイルとして保存
-// 日付付きの JSON ファイルとして保存（例: docs/v2/2025/20250714.json）
+// 日付付きの JSON ファイルとして保存（例: docs/v3/2025/20250714.json）
 // 最新データとして today.json にも保存
 $storage = new PreviewSaver();
 $storage->save($previews, "docs/{$version}/" . $date->format('Y') . '/' . $date->format('Ymd') . '.json');
