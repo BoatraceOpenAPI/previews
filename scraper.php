@@ -47,5 +47,5 @@ $storage->save($previews, "docs/{$version}/" . $date->format('Y') . '/' . $date-
 if ($day_specified) {
     file_put_contents("docs/{$version}/recorded_day.json", $date->toDateString());
 } else {
-    $storage->save($odds, "docs/{$version}/yesterday.json");
+    $storage->save($previews, "docs/{$version}/yesterday.json");
 }
